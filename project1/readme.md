@@ -33,7 +33,7 @@ For the given five tasks, an independent program and testing methodology was use
 
    
 
-**Results**
+**Results - More detailed results in PDF**
 
 1. Intel Memory Latency Checker found the latency of the main memory to be 107.7ns  
    ![][image1]  
