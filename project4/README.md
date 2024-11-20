@@ -1,3 +1,5 @@
+NOTE: Formatted results, screenshots, tables, and more details are included in the PDF version of this report.
+
 Running Instructions:
 This assignment is split into 4 program files. DictionaryCodec.h and DictionaryCodec.cpp handle implementing the dictionary encoding and query logic, as well as setting up the dictionary encoding scheme. The encoding utilizes the variable num_threads, to define the number of threads used in encoding. The query operations include VanillaScan, Item Search (SIMD/no SIMD), and Prefix Scan (SIMD/No SIMD). Item Search(SIMD/No SIMD) and Prefix Scan (SIMD/No SIMD). The last two files are testbenches that handle encoding and query tests. test_encoding.cpp handles encoding benchmarks with a varying num_thread value (Testing 1,2,4 and 8 thread encoding), and test_query.cpp measures query speeds for the five query operations.
 
