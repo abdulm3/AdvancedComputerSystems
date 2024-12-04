@@ -1,6 +1,6 @@
-NOTE: A better formatted version of this readme.md can be viewed in the PDF "GPU Sparse Matrix Multiplication and Power Profiling". This PDF also includes tables and graphs.
-A summary of instructions and sample outputs can be seen in readme.txt
-All graphs (including the ones not shown in the PDF) are in the graphs folder.
+**NOTE: A better formatted version of this readme.md can be viewed in the PDF "GPU Sparse Matrix Multiplication and Power Profiling". This PDF also includes tables and graphs.
+A summary of instructions and sample outputs can be seen in readme.txt.
+All graphs (including the ones not shown in the PDF) are in the graphs folder.**
 
 
 **GPU Sparse Matrix Multiplication and Power Profiling**
