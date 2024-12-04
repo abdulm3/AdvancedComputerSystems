@@ -5,39 +5,14 @@ All graphs (including the ones not shown in the PDF) are in the graphs folder.
 
 GPU Sparse Matrix Multiplication and Power Profiling
 
-GPU Sparse Matrix Multiplication and Power Profiling	1
-Overview	2
-Features	2
-Sparse Matrix Multiplication	2
-GPU Power Profiling	2
-Execution Time Measurement	2
-Customizable Parameters	2
-Usage	3
-Prerequisites	3
-Compiling & Running	3
-Customizing Parameters	3
-Results	4
-10% non-zero elements	4
-Table 1: 10% Density Data	4
-50% non-zero elements	5
-Table 2: 50% Density Data	5
-90% non-zero elements	5
-Table 3: 90% Density Data	5
-Density Comparison	6
-Figure 1: Execution time with varying density and dimension	6
-Figure 2: Power with varying density and dimension	7
-Figure 3: mWh with varying density and dimension	8
-Power Draw Curve	8
-Figure 4: Power progression for 90% density, 16,384 matrix	9
-Final Thoughts	9
-
-
 Overview
 This program performs matrix multiplication (with a set sparsity) using the NVIDIA CUDA framework and cuSPARSE library on the GPU. It measures the execution time for the multiplication, and logs the GPU’s power consumption throughout the process, providing insights into the performance and energy efficiency.
 
 This project was inspired by the high power demand that has grown alongside AI/ML model training. I wanted to get an insight and benchmark how much power a GPU would be consuming for a given operation, and profile the curve that might form. This project was also my first experience installing and using the NVidia CUDA Toolkit, which was insightful on its own.
 
 In terms of code structure, all written code is contained in “matrix_multiplication.cu” and relies on the libraries and header files given in the NVidia CUDA Toolkit.
+
+
 Features
 There are several key elements to this program that are outlined in the sections below. These elements describe the features, goals, and data collection methods of this program.
 Sparse Matrix Multiplication
@@ -56,6 +31,8 @@ This program will require an NVidia GPU with CUDA support, the NVidia CUDA Toolk
 The NVidia CUDA Toolkit (which includes required libraries and header files) can be found at https://developer.nvidia.com/cuda-toolkit
 
 In my case, I am using an NVidia RT3070-Ti GPU (idle power around 86 W), paired with an Intel-12700k processor.
+
+
 Compiling & Running
 Compiling this program will require saving it as “matrix_multiplication.cu” and then compiling it using “nvcc.” For example, in bash you could write “nvcc matrix_multiplication.cu -o matrix_multiplication -lcusparse”, including the lcusparse flag to handle the cuSPARSE libraries.
 Alternatively, you could setup Visual Studio 2022 to build this program for you (build from the top panel), and then run without debugging. This will require setting up additional compile flags in the project manager. 
@@ -67,19 +44,21 @@ Matrix size (N) and density can be modified in the main() function.
 const int N = 16384;    // Matrix size
      	const float density = 0.1f; // Sparsity level (10% non-zero elements)
 
+
+
 Results
 All results and data points can be seen with this spreadsheet, found at https://docs.google.com/spreadsheets/d/14KxecxRB6gYDuMkN5Rx_uXCn5TI7JLpx0YgtoI7FEGA/edit?usp=sharing
 
 For each density (0.1, 0.5, 0.9) and matrix size (N=1024, 2048, 4096, 8192, 16384), a test was run to collect execution time (ms) and average GPU Power (W). Using these values, we can compute milliwatt-hours (mWh), and Power Efficiency (GFLOPs/W). Milliwatt-hours can be found by multiplying the time and power. 
 
 Power Efficiency is found by taking the number of non-zero elements,
- nnz = density N2
+ nnz = density x N^2
 
 And multiplying it by 2N to get FLOPS, 
-FLOPs = 2Nnnz
+FLOPs = 2 x N x nnz
 
 And then computing power efficiency,
-Power Efficiency = FLOPsExecution Time  Average Power
+Power Efficiency = FLOPs / (Execution Time x Average Power)
 10% non-zero elements
 For the 10% density operations, the results for each square matrix level (from 1024x1024 to 16384x16348 can be seen below.
 Table 1: 10% Density Data
